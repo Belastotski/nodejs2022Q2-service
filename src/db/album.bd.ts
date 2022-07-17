@@ -1,4 +1,5 @@
 import { Album } from 'src/modules/albums/entities/album.entity';
+import TrackDB from './track.bd';
 
 export default class AlbumDB {
   static data: Map<string, Album>;
@@ -13,6 +14,10 @@ export default class AlbumDB {
     if (!AlbumDB.data.has(id)) return undefined;
     const entity = AlbumDB.data.get(id);
     AlbumDB.data.delete(id);
+    TrackDB.tracks.forEach((track, key) => {
+      if (track.albumId == id) track.albumId = null;
+      TrackDB.tracks.set(key, track);
+    });
     return entity;
   }
   update(entity: Album) {
