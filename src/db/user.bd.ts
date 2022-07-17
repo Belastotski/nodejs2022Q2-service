@@ -21,9 +21,12 @@ export default class UserDB {
     return user;
   }
   findOne(id: string): User {
-    return this.users.get(id);
+    const user = this.users.get(id);
+    if (!user) return undefined;
+    delete user.password;
+    return user;
   }
   findAll(): User[] {
-    return [...this.users.values()];
+    return [...this.users.values()].map((user) => (delete user.password, user));
   }
 }

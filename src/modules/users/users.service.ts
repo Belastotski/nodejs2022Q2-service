@@ -15,7 +15,7 @@ export class UsersService {
     const { login, password } = createUserDto;
     const createdAt = Date.now();
     const updatedAt = Date.now();
-    const version = 0;
+    const version = 1;
     const user = new User(id, login, password, version, createdAt, updatedAt);
     if (!user) {
       throw new HttpException('Wrong data', HttpStatus.BAD_REQUEST);
