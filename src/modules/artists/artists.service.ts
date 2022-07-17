@@ -30,7 +30,7 @@ export class ArtistsService {
     }
     const artitst = this.artists.findOne(id);
     if (!artitst)
-      throw new HttpException('No found User', HttpStatus.NOT_FOUND);
+      throw new HttpException('No found Artist', HttpStatus.NOT_FOUND);
     return artitst;
   }
 
@@ -40,7 +40,7 @@ export class ArtistsService {
     }
     const artist = this.artists.findOne(id);
     if (!artist) {
-      throw new HttpException('No found User', HttpStatus.NOT_FOUND);
+      throw new HttpException('No found Artist', HttpStatus.NOT_FOUND);
     }
     let { name, grammy } = updateArtistDto;
     if (!name) name = artist.name;
@@ -55,7 +55,7 @@ export class ArtistsService {
     }
     const artist = this.artists.findOne(id);
     if (!artist) {
-      throw new HttpException('No found User', HttpStatus.NOT_FOUND);
+      throw new HttpException('No found Artist', HttpStatus.NOT_FOUND);
     }
     return artist;
   }
