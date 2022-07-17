@@ -1,29 +1,29 @@
 import { Album } from 'src/modules/albums/entities/album.entity';
 
 export default class AlbumDB {
-  data: Map<string, Album>;
+  static data: Map<string, Album>;
   constructor() {
-    this.data = new Map<string, Album>();
+    AlbumDB.data = new Map<string, Album>();
   }
 
   create(entity: Album) {
-    this.data.set(entity.id, entity);
+    AlbumDB.data.set(entity.id, entity);
   }
   delete(id: string) {
-    if (!this.data.has(id)) return undefined;
-    const entity = this.data.get(id);
-    this.data.delete(id);
+    if (!AlbumDB.data.has(id)) return undefined;
+    const entity = AlbumDB.data.get(id);
+    AlbumDB.data.delete(id);
     return entity;
   }
   update(entity: Album) {
-    if (!this.data.has(entity.id)) return undefined;
-    this.data.set(entity.id, entity);
+    if (!AlbumDB.data.has(entity.id)) return undefined;
+    AlbumDB.data.set(entity.id, entity);
     return entity;
   }
   findOne(id: string): Album {
-    return this.data.get(id);
+    return AlbumDB.data.get(id);
   }
   findAll(): Album[] {
-    return [...this.data.values()];
+    return [...AlbumDB.data.values()];
   }
 }

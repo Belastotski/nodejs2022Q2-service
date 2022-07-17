@@ -1,29 +1,29 @@
 import { Track } from 'src/modules/tracks/entities/track.entity';
 
 export default class TrackDB {
-  tracks: Map<string, Track>;
+  static tracks: Map<string, Track>;
   constructor() {
-    this.tracks = new Map<string, Track>();
+    TrackDB.tracks = new Map<string, Track>();
   }
 
   create(track: Track) {
-    this.tracks.set(track.id, track);
+    TrackDB.tracks.set(track.id, track);
   }
   delete(id: string) {
-    if (!this.tracks.has(id)) return undefined;
-    const track = this.tracks.get(id);
-    this.tracks.delete(id);
+    if (!TrackDB.tracks.has(id)) return undefined;
+    const track = TrackDB.tracks.get(id);
+    TrackDB.tracks.delete(id);
     return track;
   }
   update(track: Track) {
-    if (!this.tracks.has(track.id)) return undefined;
-    this.tracks.set(track.id, track);
+    if (!TrackDB.tracks.has(track.id)) return undefined;
+    TrackDB.tracks.set(track.id, track);
     return track;
   }
   findOne(id: string): Track {
-    return this.tracks.get(id);
+    return TrackDB.tracks.get(id);
   }
   findAll(): Track[] {
-    return [...this.tracks.values()];
+    return [...TrackDB.tracks.values()];
   }
 }
